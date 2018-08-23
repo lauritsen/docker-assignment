@@ -14,5 +14,5 @@ RUN tar xzf toilet-0.3.tar.gz
 RUN apt-get install -y toilet
 
 # Run command
-CMD ["toilet", "-F", "border", "--gay"]
+ENTRYPOINT ["toilet", "-F", "border", "--gay"]
 
