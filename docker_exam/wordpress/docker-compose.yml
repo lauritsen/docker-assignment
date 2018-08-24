@@ -7,6 +7,8 @@ services:
       WORDPRESS_DB_PASSWORD: wppass
     depends_on:
       - db
+    networks:
+      - wpnetwork
 
   db:
     image: mysql:5.7
@@ -15,6 +17,8 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+    networks:
+      - wpnetwork
 
   loadbalancer-nginx:
     image: nginx
@@ -24,8 +28,14 @@ services:
       - '80:80'
     depends_on:
       - wordpress
+    networks:
+      - wpnetwork
 
 
 volumes:
   nginx:
+
+networks: 
+  wpnetwork:
+    driver: bridge
   
